@@ -123,8 +123,8 @@ var TODOLIST = (function () {
 		var columnasub = document.createElement("div");
 		columna1.className = "col-md-1 col-sm-1 col-xs-1 col-1 botones";
 		if (original.completado == false) {
-			icono.className = "ion-checkmark-round px-1";
-			iconosub.className = "ion-checkmark-round px-1";
+			icono.className = "flaticon-checked px-1";
+			iconosub.className = "flaticon-checked px-1";
 			boton.className = "btn btn-outline-success btn-sm my-1 botonRealizado";
 			botonsub.className = "btn btn-outline-success btn-sm my-1 mx-2 botonRealizado";
 			boton.appendChild(icono);
@@ -132,10 +132,10 @@ var TODOLIST = (function () {
 			columna1.appendChild(boton);
 			columnasub.appendChild(botonsub);
 		}
-		icono2.className = "ion-trash-b px-1";
+		icono2.className = "flaticon-trash px-1";
 		boton2.className = "btn btn-outline-danger btn-sm my-1 botonEliminar";
 		boton2.appendChild(icono2);
-		icono2sub.className = "ion-trash-b px-1";
+		icono2sub.className = "flaticon-trash px-1";
 		boton2sub.className = "btn btn-outline-danger btn-sm my-1 mx-2 botonEliminar";
 		boton2sub.appendChild(icono2sub);
 		columna1.appendChild(boton2);

@@ -9,11 +9,13 @@
 }
 
 .container {
-	margin-top: 60px;
+	margin-top: 70px;
 }
 
-h6 {
+ nav h6  {
 	display: inline-block;
+	font-size: 17px;
+	color: #f6f7f8;
 }
 
 form .form-control{
@@ -32,7 +34,7 @@ form .form-control{
 	color: #f6f7f8;
 }
 
-.navbar .navbar-brand,.navbar-toggler i {
+.navbar .navbar-brand,.navbar-toggler i, .navbar .navbar-brand:hover, .navbar .navbar-brand:visited {
 	color: #f6f7f8;
 }
 
@@ -44,7 +46,7 @@ button {
 	background-color: #efefef;
 }
 
-@media screen and (max-width: 410px) {
+@media screen and (max-width: 480px) {
 	.botones {
 		display: none;
 	}
@@ -53,8 +55,15 @@ button {
 	}
 }
 
-@media screen and (min-width: 410px) {
+@media screen and (min-width: 481px) {
 	.botones-sub{
 		display: none; 
+	}
+}
+
+@media screen and (max-width: 575px) {
+	input {
+		margin-top: 5px;
+		margin-bottom: 5px;
 	}
 }
