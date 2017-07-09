@@ -5,7 +5,11 @@ var TODOLIST = (function () {
 
 	function devuelveDatos () {
 		var listTareas = localStorage.getItem("listaTareas");
-		tareas = JSON.parse(listTareas);
+		if (listTareas === null) {
+			tareas = [];
+		} else {
+			tareas = JSON.parse(listTareas);	
+		}
 	};
 
 	function guardarDatos() {
@@ -59,11 +63,9 @@ var TODOLIST = (function () {
 
 	
 	function render () {
-		if (tareas.length > 0) {
-			for (var i = 0; i < tareas.length; i++) {
-				renderizarTareas(tareas[i]);
-			}	
-		}
+		for (var i = 0; i < tareas.length; i++) {
+			renderizarTareas(tareas[i]);
+		}	
 	};
 
 
