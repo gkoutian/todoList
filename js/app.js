@@ -1,35 +1,16 @@
 var TODOLIST = (function () {
 
 	var tareas = [
-		{ 
-			id: 9,
-			titulo: "Crear pagina web",
-			imagen: "run",
-			descripcion: "Crear el html base",
-			completado: true
-		},
-		{ 
-			id: 108,
-			titulo: "Modificarlo con css",
-			imagen: "money",
-			descripcion: "Crear el css para estilizar el html",
-			completado: false
-		},
-		{ 
-			id: 42,
-			titulo: "Crear acciones",
-			imagen: "plate",
-			descripcion: "Con javascript crear acciones",
-			completado: false
-		},
-		{ 
-			id: 37,
-			titulo: "Preparar backend",
-			imagen: "code",
-			descripcion: "Tener listo el backend para el proyecto",
-			completado: true
-		}
 	]
+
+	function devuelveDatos () {
+		var listTareas = localStorage.getItem("listaTareas");
+		tareas = JSON.parse(listTareas);
+	};
+
+	function guardarDatos() {
+		localStorage.setItem("listaTareas", JSON.stringify(tareas));
+	};
 
 	function eliminar () {
 		var deletes = document.getElementsByClassName("botonEliminar");
@@ -41,6 +22,7 @@ var TODOLIST = (function () {
 					for (var i = 0; i < tareas.length; i++) {
 						if (tareas[i].id == table.id) {
 							tareas.splice(i, 1);
+							guardarDatos();
 						}
 					}
 					table.parentNode.removeChild(table)	
@@ -57,12 +39,14 @@ var TODOLIST = (function () {
 				for (var i = 0; i < tareas.length; i++) {
 					if (tareas[i].id == table.id) {
 						tareas[i].completado = true;
+						guardarDatos();
 						limpiarLista();
 						render();
 					}
 				}
 			}
 		}
+
 	}
 
 	function limpiarLista () {
@@ -209,6 +193,9 @@ var TODOLIST = (function () {
 			document.getElementById("descripcion").value = "";
 			document.getElementById("imagen").value = "";
 		}
+		var boton = document.getElementById("navbarSupportedContent");
+		boton.className = "navbar-collapse collapse";
+		guardarDatos();
 	};
 
 	document.getElementById("ordenar-id").onclick = function (event) {
@@ -224,6 +211,7 @@ var TODOLIST = (function () {
 				}
 			}
 		}
+		guardarDatos();
 		limpiarLista();
 		render() ;
 	};
@@ -240,6 +228,7 @@ var TODOLIST = (function () {
 				}
 			}
 		}
+		guardarDatos();
 		limpiarLista();
 		render();
 	};
@@ -257,10 +246,13 @@ var TODOLIST = (function () {
 				}
 			}
 		}
+		guardarDatos();
 		limpiarLista();
 		render();
 	};
 
+
+	devuelveDatos();
 	render();
 	return {}
 })();
