@@ -1,0 +1,54 @@
+.container .btn {
+ border-radius: 30px;
+}
+
+.container .card .btn {
+	padding-left: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.container {
+	margin-top: 60px;
+}
+
+h6 {
+	display: inline-block;
+}
+form .form-control{
+	border-radius: 55px;
+	background-color: #ff9999;
+	border: none;
+}
+
+::-webkit-input-placeholder{
+	color: #fff;
+}
+
+form .form-control:on{
+	background-color: blue;
+}
+
+.navbar {
+	background-color: #ff3366;
+	color: #f6f7f8;
+}
+
+.btn-outline-secondary {
+	border-color: #f6f7f8;
+	color: #f6f7f8;
+}
+
+.btn-outline-secondary:Hover {
+	color: #ff3366;
+	background-color: #fff;
+	border-color: #fff;
+}
+
+button {
+	display: block;
+}
+
+.completado {
+	background-color: #efefef;
+}
