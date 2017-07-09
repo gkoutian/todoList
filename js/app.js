@@ -115,17 +115,29 @@ var TODOLIST = (function () {
 		var boton = document.createElement("button")
 		var icono2 = document.createElement("i");
 		var boton2 = document.createElement("button")
+		var iconosub = document.createElement("i");
+		var botonsub = document.createElement("button")
+		var icono2sub = document.createElement("i");
+		var boton2sub = document.createElement("button")
 		var columna1 = document.createElement("div");
-		columna1.className = "col-md-1 col-sm-1 col-xs-1 col-1";
+		var columnasub = document.createElement("div");
+		columna1.className = "col-md-1 col-sm-1 col-xs-1 col-1 botones";
 		if (original.completado == false) {
-			icono.className = "ion-checkmark-round";
-			boton.className = "btn btn-outline-success my-1 botonRealizado";
-			boton.appendChild(icono);	
+			icono.className = "ion-checkmark-round px-1";
+			iconosub.className = "ion-checkmark-round px-1";
+			boton.className = "btn btn-outline-success btn-sm my-1 botonRealizado";
+			botonsub.className = "btn btn-outline-success btn-sm my-1 mx-2 botonRealizado";
+			boton.appendChild(icono);
+			botonsub.appendChild(iconosub);	
 			columna1.appendChild(boton);
+			columnasub.appendChild(botonsub);
 		}
-		icono2.className = "ion-trash-b";
-		boton2.className = "btn btn-outline-danger my-1 botonEliminar";
+		icono2.className = "ion-trash-b px-1";
+		boton2.className = "btn btn-outline-danger btn-sm my-1 botonEliminar";
 		boton2.appendChild(icono2);
+		icono2sub.className = "ion-trash-b px-1";
+		boton2sub.className = "btn btn-outline-danger btn-sm my-1 mx-2 botonEliminar";
+		boton2sub.appendChild(icono2sub);
 		columna1.appendChild(boton2);
 		var columna2 = document.createElement("div");
 		var titulo = document.createElement("h3");
@@ -152,6 +164,7 @@ var TODOLIST = (function () {
 		var imagen = document.createElement("img");
 		columna3.className = "col-md-2 col-sm-2 col-xs-3 col-3 d-flex align-items-center";
 		imagen.src = "img/" + original.imagen + ".png";
+		imagen.className = "img-fluid";
 		imagen.width = 80;
 		imagen.height = 80;
 		columna3.appendChild(imagen);
@@ -160,9 +173,15 @@ var TODOLIST = (function () {
 		columnarow.appendChild(columna1);
 		columnarow.appendChild(columna2);
 		columnarow.appendChild(columna3);
+		columnasub.className = "col-md-12 text-center";
+		columnasub.appendChild(boton2sub);
+		var columnarow2 = document.createElement("div");
+		columnarow2.className = "row botones-sub";
+		columnarow2.appendChild(columnasub);
 		var columnablock = document.createElement("div");
 		columnablock.className = "card-block";
 		columnablock.appendChild(columnarow);
+		columnablock.appendChild(columnarow2);
 		var columnacard = document.createElement("div");
 		columnacard.className = "card my-2 py-2";
 		if (original.completado) {
