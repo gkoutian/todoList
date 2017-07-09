@@ -21,9 +21,6 @@ form .form-control{
 	border: none;
 }
 
-::-webkit-input-placeholder{
-	color: #fff;
-}
 
 form .form-control:on{
 	background-color: blue;
@@ -31,6 +28,15 @@ form .form-control:on{
 
 .navbar {
 	background-color: #ff3366;
+	color: #f6f7f8;
+}
+
+.navbar-light .navbar-toggler {
+	border-color: #f6f7f8;
+	color: #f6f7f8;
+}
+
+.navbar .navbar-brand,.navbar-toggler i {
 	color: #f6f7f8;
 }
 

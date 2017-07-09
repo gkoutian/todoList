@@ -116,7 +116,7 @@ var TODOLIST = (function () {
 		var icono2 = document.createElement("i");
 		var boton2 = document.createElement("button")
 		var columna1 = document.createElement("div");
-		columna1.className = "col-md-1";
+		columna1.className = "col-md-1 col-sm-1 col-xs-1 col-1";
 		if (original.completado == false) {
 			icono.className = "ion-checkmark-round";
 			boton.className = "btn btn-outline-success my-1 botonRealizado";
@@ -134,7 +134,7 @@ var TODOLIST = (function () {
 		titulo.className = "card-title";
 		descripcion.innerHTML = original.descripcion;
 		descripcion.className = "card-text";
-		columna2.className = "col-md-9 pl-4";
+		columna2.className = "col-md-9 col-sm-9 col-xs-8 col-8 pl-4";
 		columna2.appendChild(titulo);
 		columna2.appendChild(descripcion);
 		var badge = document.createElement("span");
@@ -150,7 +150,7 @@ var TODOLIST = (function () {
 		columna2.appendChild(completo);
 		var columna3 = document.createElement("div");
 		var imagen = document.createElement("img");
-		columna3.className = "col-md-2 d-flex align-items-center";
+		columna3.className = "col-md-2 col-sm-2 col-xs-3 col-3 d-flex align-items-center";
 		imagen.src = "img/" + original.imagen + ".png";
 		imagen.width = 80;
 		imagen.height = 80;
