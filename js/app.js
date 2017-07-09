@@ -1,7 +1,7 @@
 var TODOLIST = (function () {
 
 	var tareas = [
-	]
+	];
 
 	function devuelveDatos () {
 		var listTareas = localStorage.getItem("listaTareas");
@@ -59,8 +59,10 @@ var TODOLIST = (function () {
 
 	
 	function render () {
-		for (var i = 0; i < tareas.length; i++) {
-			renderizarTareas(tareas[i]);
+		if (tareas.length > 0) {
+			for (var i = 0; i < tareas.length; i++) {
+				renderizarTareas(tareas[i]);
+			}	
 		}
 	};
 
@@ -90,7 +92,12 @@ var TODOLIST = (function () {
 			completado: false
 		}
 		renderizarTareas(nuevaTarea);
-		tareas.push(nuevaTarea);
+		if (tareas.lenght == 0) {
+			tareas[0] = nuevaTarea
+		} else {
+			tareas.push(nuevaTarea);
+	
+		}
 	};
 
 	function renderizarTareas (original) {
