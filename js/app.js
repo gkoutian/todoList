@@ -29,7 +29,8 @@ var TODOLIST = (function () {
 							guardarDatos();
 						}
 					}
-					table.parentNode.removeChild(table)	
+					limpiarLista();
+					render();
 				}
 			}
 		}
@@ -63,9 +64,15 @@ var TODOLIST = (function () {
 
 	
 	function render () {
-		for (var i = 0; i < tareas.length; i++) {
-			renderizarTareas(tareas[i]);
-		}	
+		var saludo = document.getElementById("saludo");
+		if (tareas.length == 0){
+			saludo.style.display = "inline-block";
+		} else {
+			for (var i = 0; i < tareas.length; i++) {
+				saludo.style.display = "none";
+				renderizarTareas(tareas[i]);
+			}
+		}
 	};
 
 
@@ -172,17 +179,19 @@ var TODOLIST = (function () {
 		columnarow2.className = "row botones-sub";
 		columnarow2.appendChild(columnasub);
 		var columnablock = document.createElement("div");
-		columnablock.className = "card-block";
+		columnablock.className = "card-block text-left";
 		columnablock.appendChild(columnarow);
 		columnablock.appendChild(columnarow2);
 		var columnacard = document.createElement("div");
-		columnacard.className = "card my-2 py-2";
+		columnacard.className = "card my-2 py-2 ";
 		if (original.completado) {
 			columnacard.className += " completado";
 		}
 		columnacard.id = original.id;
 		columnacard.appendChild(columnablock);
 		contenedor.appendChild(columnacard);
+		var saludo = document.getElementById("saludo");
+		saludo.style.display = "none";
 		eliminar();
 		completar();
 	};
@@ -194,9 +203,9 @@ var TODOLIST = (function () {
 		var imagen = document.getElementById("imagen").value;
 		if (titulo == "" || descripcion == "" || imagen == "")
 		{
-			alert("Faltan igresar datos");
+			alerta("danger");
 		}else {
-			alert("Se creo la tarea");
+			alerta("success");
 			crearTarea(titulo, descripcion, imagen);
 			document.getElementById("titulo").value = "";
 			document.getElementById("descripcion").value = "";
@@ -260,6 +269,30 @@ var TODOLIST = (function () {
 		render();
 	};
 
+	function alerta (tipo) {
+		var span = document.createElement("span");
+		span.innerHTML = "&times;";
+		span.setAttribute("aria-hidden", "true");
+		var boton = document.createElement("button");
+		boton.type = "button";
+		boton.className = "close";
+		boton.setAttribute("data-dismiss", "alert");
+		boton.setAttribute("aria-label", "Close");
+		boton.appendChild(span);
+		var area = document.createElement("div");
+		if (tipo == "danger") {
+			area.className = "alert alert-danger alert-dismissible fade show";
+			area.appendChild(boton);
+			area.innerHTML += "Faltan datos para crear la tarea"
+		} else {
+			area.className = "alert alert-success alert-dismissible fade show";
+			area.appendChild(boton);
+			area.innerHTML += "Se creo la tarea";
+		}
+		area.setAttribute("role", "alert");
+		var alerta = document.getElementById("alertas");
+		alerta.appendChild(area);
+	};
 
 	devuelveDatos();
 	render();

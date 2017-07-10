@@ -18,10 +18,31 @@
 	color: #f6f7f8;
 }
 
+.form-control::-webkit-input-placeholder {
+  color: #ffc7c8;
+}
+
 form .form-control{
 	border-radius: 55px;
-	background-color: #ff9999;
+	background-color: #f77;
 	border: none;
+}
+
+form .form-control:focus{
+	background-color: #faa;
+	border: 2px solid #fcc;
+}
+
+#agregar-tarea {
+ color: #ff9999;
+}
+
+#saludo {
+	color:#aaa;
+}
+
+#agregar-tarea:hover {
+ color: #f6f7f8;
 }
 
 .navbar {
@@ -65,5 +86,8 @@ button {
 	input {
 		margin-top: 5px;
 		margin-bottom: 5px;
+	}
+	.card-block {
+		padding: 0.3rem;
 	}
 }

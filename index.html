@@ -10,10 +10,10 @@
 </head>
 <body>
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
-  	<button class="navbar-toggler navbar-toggler-right btn-sm my-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  	<button class="navbar-toggler navbar-toggler-right btn-sm mt-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <i class="flaticon-menu"></i>
   	</button>
-  	<h6 class="navbar-brand pt-2">ToDo List GK</h6>
+  	<h6 class="navbar-brand pt-1"><i class="flaticon-programming ml-2 mr-3"></i>  ToDo List GK</h6>
   	<div class="collapse navbar-collapse" id="navbarSupportedContent">
     	<ul class="navbar-nav mr-auto">
     	</ul>
@@ -21,12 +21,15 @@
     	  	<input class="form-control mr-sm-2" type="text" placeholder="Titulo" id="titulo">
 		  	<input class="form-control mr-sm-2" type="text" placeholder="Descripcion" id=descripcion>
 		   	<input class="form-control mr-sm-2" type="text" placeholder="Dir Imagen" id="imagen">
-			<button id="agregar-tarea" class="btn btn-secondary my-2 btn-sm my-sm-0 ml-auto" type="submit"><i class="flaticon-pencil"></i></button>
+		   	<button id="agregar-tarea" style="display:none" type="submit"></button>
+			<a id="agregar-tarea" class=" my-sm-0 mx-1 px-2 py-1"><i class="flaticon-pencil"></i></a>
 	    </form>
   	</div>
 </nav>
 <div class="container">
 	<div class="row">
+		<div class="col-md-8 offset-md-2" id="alertas">
+		</div>
 		<div class="col-md-12 d-flex justify-content-center">
 			<h6 class="mt-2"><i>Ordenar:</i></h6>
 			<button class="btn btn-outline-info btn-sm my-2 mx-2" id="ordenar-id"><b>N° iD</b></button>
@@ -35,7 +38,8 @@
 		</div>
 	</div>
 	<div class="row justify-content-center">
-		<div class="col-md-8" id="lista-de-tareas">
+		<div class="col-md-8 offset text-center" id="lista-de-tareas">
+			<h4 class="mx-auto mt-5" id="saludo">No hay tareas. Crea una!</h4>
 		</div>
 	</div>
 </div>

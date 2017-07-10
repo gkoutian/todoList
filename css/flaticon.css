@@ -1,6 +1,6 @@
 	/*
   	Flaticon icon font: Flaticon
-  	Creation date: 09/07/2017 21:49
+  	Creation date: 10/07/2017 02:52
   	*/
 
 @font-face {
@@ -24,13 +24,20 @@
 [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
 [class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
   font-family: Flaticon;
-        font-size: 17px;
+        font-size: 20px;
 font-style: normal;
-margin-left: 0px;
 }
 
-.flaticon-menu:before { content: "\f100"; }
-.flaticon-checked:before { content: "\f101"; }
-.flaticon-pencil:before { content: "\f102"; }
-.flaticon-save-file-option:before { content: "\f103"; }
+[class^="flaticon-pencil"]:before, [class^="flaticon-pencil"]:after {
+  font-size: 30px;
+}
+[class^="flaticon-programming"]:before, [class^="flaticon-programming"]:after {
+  font-size: 24px;
+}
+
+
+.flaticon-programming:before { content: "\f100"; }
+.flaticon-pencil:before { content: "\f101"; }
+.flaticon-menu:before { content: "\f102"; }
+.flaticon-checked:before { content: "\f103"; }
 .flaticon-trash:before { content: "\f104"; }
