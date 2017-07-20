@@ -3,11 +3,180 @@ var TODOLIST = (function () {
 	var tareas = [
 	];
 
-	function devuelveDatos () {
+	var diccionario = [
+		{
+			code: "ART",
+			keyword: ["PINTURA", "ARTE", "DIBUJO", "DIBUJOS", "PINTURAS"]	
+		},
+		{
+			code: "BASKETBALL",
+			keyword: ["BASKET", "BASKETBALL"]
+		},
+		{
+			code: "BBQ",
+			keyword: ["ASADO", "ASADITO", ]
+		},
+		{
+			code: "BEER",
+			keyword: ["CERVEZA", "CERVEZAS", "BIRRA", "BIRRAS", "OCTOBERFEST"]
+		},
+		{
+			code: "BILLIARD",
+			keyword: ["POOL"]
+		},
+		{
+			code: "BOWLING",
+			keyword: ["BOWLING"]
+		},
+		{
+			code: "BOOKCLUB",
+			keyword: ["LIBRO", "LIBROS", "LIBRERIA"]
+		},
+		{
+			code: "CAMPING",
+			keyword: ["CAMPING", "CAMPAMENTO"]
+		},
+		{
+			code: "CINEMA",
+			keyword: ["CINE"]
+		},
+		{
+			code: "BREAKFAST",
+			keyword: ["DESAYUNO", "MERIENDA"]
+		},
+		{
+			code: "dinner",
+			keyword: ["ALMUERZO", "COMIDA", "CENA"]
+		},
+		{
+			code: "CLEAN",
+			keyword: ["LIMPIEZA", "LIMPIAR"]
+		},
+		{
+			code: "CODE",
+			keyword: ["PROGRAMAR", "PROGRAMA", "HACKATON"]
+		},
+		{
+			code: "COFFEE",
+			keyword: ["CAFE", "CAFES", "CAFETERIA", "STARBUCKS"]
+		},
+		{
+			code: "CONCERT",
+			keyword: ["CONCIERTO", "RECITAL"]
+		},
+		{
+			code: "CYCLING",
+			keyword: ["BICICLETA", "BICI"]
+		},
+		{
+			code: "DANCING",
+			keyword: ["BAILAR", "BAILE", ""]
+		},
+		{
+			code: "DENTIST",
+			keyword: ["DENTISTA", "ODONTOLOGO", "ODONTOLOGA"]
+		},
+		{
+			code: "GOLF",
+			keyword: ["GOLF"]
+		},
+		{
+			code: "GYM",
+			keyword: ["GIMNASIO", "GIM", "GYM"]
+		},
+		{
+			code: "HAIRCUT",
+			keyword: ["PELO", "PELUQUERIA", "PELUQUERO", "PELUQUERO"]
+		},
+		{
+			code: "HALLOWEEN",
+			keyword: ["HALLOWEEN"]
+		},
+		{
+			code: "LEARNINSTRUMENT",
+			keyword: ["PIANO", "CANTAR", "CANTO", "FLAUTA", "ORQUESTA", "OBOE", "CLARINETE", "SAXOFON", "SAXO", "TROMPETA", "MUSICA"]
+		},
+		{
+			code: "LEARNLANGUAGE",
+			keyword: ["FRANCES", "ALEMAN", "INGLES"]
+		},
+		{
+			code: "MANICURE",
+			keyword: ["MANICURA", "PEDICURA", "MANICURAS", "PEDICURAS"]
+		},
+		{
+			code: "MASSAGE",
+			keyword: ["MASAJE"]
+		},
+		{
+			code: "OILCHANGE",
+			keyword: ["ACEITE"]
+		},
+		{
+			code: "READ",
+			keyword: ["LEER", "DIARIO"]
+		},
+		{
+			code: "REPAIR",
+			keyword: ["REPARAR", "ARREGLAR", "REPARADO"]
+		},
+		{
+			code: "RUNNING",
+			keyword: ["CORRER"]
+		},
+		{
+			code: "SOCCER",
+			keyword: ["FUTBOL", "PELOTA"]
+		},
+		{
+			code: "SWIMMING",
+			keyword: ["PILETA", "NADAR", "NATACION", "PILE"]
+		},
+		{
+			code: "TENNIS",
+			keyword: ["TENIS"]
+		},
+		{
+			code: "WALK",
+			keyword: ["CAMINAR", "CAMINATA"]
+		},
+		{
+			code: "YOGA",
+			keyword: ["YOGA"]
+		}
+	]
+
+	function asignarImagen (texto) {
+		texto = texto.replace(","," ");
+		texto = texto.replace("."," ");
+		texto = texto.toUpperCase();
+		var arrstr = texto.split(" ");
+		var encontrado;
+		for (var i in arrstr) {
+			for (var j in diccionario) {
+				for (var k in diccionario[j].keyword){
+					if (arrstr[i] == diccionario[j].keyword[k]) {
+						encontrado = diccionario[j].code;
+						break;
+					}
+				}
+				if (encontrado) {
+						break;
+					}
+			}
+			if (encontrado) {
+						break;
+					}
+		}
+		if (!encontrado) {
+			encontrado = "BASE"
+		}
+		return encontrado;
+	}
+
+	function recuperarDatos () {
 		var listTareas = localStorage.getItem("listaTareas");
-		if (listTareas === null) {
-			tareas = [];
-		} else {
+		if (listTareas) {
 			tareas = JSON.parse(listTareas);	
 		}
 	};
@@ -15,6 +184,10 @@ var TODOLIST = (function () {
 	function guardarDatos() {
 		localStorage.setItem("listaTareas", JSON.stringify(tareas));
 	};
+
+	function limpiarLista () {
+		document.getElementById("lista-de-tareas").innerHTML = "";	
+	}
 
 	function eliminar () {
 		var deletes = document.getElementsByClassName("botonEliminar");
@@ -27,10 +200,10 @@ var TODOLIST = (function () {
 						if (tareas[i].id == table.id) {
 							tareas.splice(i, 1);
 							guardarDatos();
+							limpiarLista();
+							render();
 						}
 					}
-					limpiarLista();
-					render();
 				}
 			}
 		}
@@ -51,18 +224,9 @@ var TODOLIST = (function () {
 				}
 			}
 		}
-
 	}
 
-	function limpiarLista () {
-		var lisa = document.querySelectorAll(".card");
-		for (var i = 0; i < lisa.length; i++) {
-			var lisapar = lisa[i].parentNode;
-			lisapar.removeChild(lisa[i]);
-		}
-	}
 
-	
 	function render () {
 		var saludo = document.getElementById("saludo");
 		if (tareas.length == 0){
@@ -76,37 +240,16 @@ var TODOLIST = (function () {
 	};
 
 
-	function crearTarea (titulo, descripcion, imagen) {
+	function crearTarea (titulo, descripcion) {
 		var id = Math.floor(Math.random() * (200 - 1) +1);
-		/*var encontrado = 1;
-		var contador;
-		while (encontrado == 0) {
-		 	for (var i = 0; i < tareas.length; i++) {
-		 		if (tareas[i].id == id) {
-		 			contador = 1;
-		 		}
-		 	}
-		 	if (contador = 1) {
-		 		var id = Math.floor(Math.random() * (200 - 1) +1);
-		 		contador = 0;
-		 	} else {
-		 		encontrado = 1;
-		 	}
-		} */
 		var nuevaTarea = {
 			id: id,
 			titulo: titulo,
 			descripcion: descripcion,
-			imagen: imagen,
 			completado: false
 		}
 		renderizarTareas(nuevaTarea);
-		if (tareas.lenght == 0) {
-			tareas[0] = nuevaTarea
-		} else {
-			tareas.push(nuevaTarea);
-	
-		}
+		tareas.push(nuevaTarea);
 	};
 
 	function renderizarTareas (original) {
@@ -163,10 +306,10 @@ var TODOLIST = (function () {
 		var columna3 = document.createElement("div");
 		var imagen = document.createElement("img");
 		columna3.className = "col-md-2 col-sm-2 col-xs-3 col-3 d-flex align-items-center";
-		imagen.src = "img/" + original.imagen + ".png";
-		imagen.className = "img-fluid";
-		imagen.width = 80;
-		imagen.height = 80;
+		imagen.src = "img/" + asignarImagen(original.titulo) + ".jpg";
+		imagen.className = "img-fluid rounded-circle";
+		imagen.width = 120;
+		imagen.height = 120;
 		columna3.appendChild(imagen);
 		var columnarow = document.createElement("div");
 		columnarow.className = "row";
@@ -200,35 +343,41 @@ var TODOLIST = (function () {
 		event.preventDefault();
 		var titulo = document.getElementById("titulo").value;
 		var descripcion = document.getElementById("descripcion").value;
-		var imagen = document.getElementById("imagen").value;
-		if (titulo == "" || descripcion == "" || imagen == "")
+		if (titulo == "" || descripcion == "")
 		{
 			alerta("danger");
 		}else {
 			alerta("success");
-			crearTarea(titulo, descripcion, imagen);
+			crearTarea(titulo, descripcion);
 			document.getElementById("titulo").value = "";
 			document.getElementById("descripcion").value = "";
-			document.getElementById("imagen").value = "";
 		}
 		var boton = document.getElementById("navbarSupportedContent");
 		boton.className = "navbar-collapse collapse";
 		guardarDatos();
 	};
 
-	document.getElementById("ordenar-id").onclick = function (event) {
-		event.preventDefault();
-		var objAux = {};
-		for (var i = 0; i < tareas.length; i++) {
-			for (var j = i + 1; j < tareas.length; j++) {
-				if (tareas[j].id < tareas[i].id) {
-					console.log(tareas[i].id + " es mayor a " + tareas[j].id);
-					objAux = tareas[i];
-					tareas[i] = tareas[j];
-					tareas[j] = objAux;
+	function ordenarTareas(arrayaOrdenar, forma, prop) {
+		arrayaOrdenar.sort( function (a, b) {
+			if (forma == "asc") {
+				if (a[prop] > b[prop]) {
+					return 1;
+				} else {
+					return -1;
+				}
+			} else if (forma == "desc") {
+				if (a[prop] < b[prop]) {
+					return 1;
+				} else {
+					return -1;
 				}
 			}
-		}
+		})
+	}
+
+	document.getElementById("ordenar-id").onclick = function (event) {
+		event.preventDefault();
+		ordenarTareas(tareas, "asc", "id");
 		guardarDatos();
 		limpiarLista();
 		render() ;
@@ -236,34 +385,15 @@ var TODOLIST = (function () {
 
 	document.getElementById("ordenar-asc").onclick = function (event) {
 		event.preventDefault();
-		var objAux = {};
-		for (var i = 0; i < tareas.length; i++) {
-			for (var j = i + 1; j < tareas.length; j++) {
-				if (tareas[j].titulo[0].toUpperCase() < tareas[i].titulo[0].toUpperCase()) {
-					objAux = tareas[i];
-					tareas[i] = tareas[j];
-					tareas[j] = objAux;
-				}
-			}
-		}
+		ordenarTareas(tareas, "asc", "titulo");
 		guardarDatos();
 		limpiarLista();
 		render();
 	};
 
-
 	document.getElementById("ordenar-desc").onclick = function (event) {
 		event.preventDefault();
-		var objAux = {};
-		for (var i = 0; i < tareas.length; i++) {
-			for (var j = i + 1; j < tareas.length; j++) {
-				if (tareas[j].titulo[0].toUpperCase() > tareas[i].titulo[0].toUpperCase()) {
-					objAux = tareas[i];
-					tareas[i] = tareas[j];
-					tareas[j] = objAux;
-				}
-			}
-		}
+		ordenarTareas(tareas, "desc", "titulo");
 		guardarDatos();
 		limpiarLista();
 		render();
@@ -294,7 +424,7 @@ var TODOLIST = (function () {
 		alerta.appendChild(area);
 	};
 
-	devuelveDatos();
+	recuperarDatos();
 	render();
-	return {}
+	return {};
 })();
