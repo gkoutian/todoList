@@ -341,6 +341,10 @@ var TODOLIST = (function () {
 
 	document.getElementById("agregar-tarea").onclick = function (event) {
 		event.preventDefault();
+		apretar();
+	};
+
+	function apretar () {
 		var titulo = document.getElementById("titulo").value;
 		var descripcion = document.getElementById("descripcion").value;
 		if (titulo == "" || descripcion == "")
@@ -423,6 +427,16 @@ var TODOLIST = (function () {
 		var alerta = document.getElementById("alertas");
 		alerta.appendChild(area);
 	};
+
+	document.getElementById("descripcion").onkeypress = function (event) {
+		var dato = document.getElementById("titulo").value;
+		if (event.keyCode == 13) {
+			event.preventDefault();
+			if (dato) {
+				apretar();
+			}
+		}
+	}
 
 	recuperarDatos();
 	render();
